@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ 
+    
+    <title>Document</title>
+</head>
+<body>
+    
+
+<!--REGISTERRRR-->
+
+
+<div class="login-box">
+    <h2>Login</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+      <div class="user-box">
+        <input type="text" name="username" required="">
+        <label>Username</label>
+      </div>
+
+      <div class="user-box">
+        <input type="password" name="password" required="">
+        <label>Password</label>
+      </div>
+      <input class="w-[90px] h-[40px] text-[16px] rounded-lg bg-[#FF6969] text-[#ffffff] hover:bg-[#DF2E38] hover:text-[#ffffff]" type="submit" name="SUBMIT">
+    </form>
+    <div>
+    {% for messages in messages %}
+      <p class="pt-4 text-[red]" id="messages">{{messages}}</p>
+    
+    {% endfor %}
+    </div>
+  </div>
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>
