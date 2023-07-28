@@ -65,5 +65,19 @@ def register(request):
     context = {'form': form}
     return render(request, 'register.html', context)
     
+
+   
+   
+def addQuizz(request):
+    return render(request, 'addQuizz.html')
     
-    # Quizzes pages
+    
+    
+    
+# Showing available quizes for selected category
+    
+def SelectedCategory(request):
+    return render (request, 'SelectedCategory.html')
+        
+    
+    

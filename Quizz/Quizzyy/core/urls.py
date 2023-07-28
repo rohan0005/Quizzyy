@@ -10,6 +10,10 @@ urlpatterns = [
 
     path('register/', views.register, name='register'),
     
+    path('SelectedCategory/', views.SelectedCategory, name='SelectedCategory'),
+    
+    
+    path('addQuizz/', views.addQuizz, name='addQuizz'),
     
     
     
