@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--Category-->
+<div class="m-4">
+<p class="text-[25px] font-semibold text-[#47A992]">Select Category</p>
+</div>
+
+
+<div class="container text-center h-[450px] grid grid-cols-3 grid-flow-col gap-4 mt-5 mb-5">
+    
+    <!-- The modal popup -->
+<div class="modal" tabindex="-1" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-[25px] font-semibold">Please Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>You need to be logged in to start the quiz. Please login or register to continue.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary text-[black]" data-bs-dismiss="modal">Close</button>
+          <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="h-[340px] bg-[#91C8E4]"><p class="text-[25px] text-[#468B97] mt-3 font-semibold">Python</p> <p class="text-[25px] text-[#545B77] mt-3 mb-[110px] font-normal">Python is a versatile and widely-used programming language known for its simplicity and readability.</p>
+        <a class="start-btn text-[20px] text-[#545B77] mt-5 px-4 py-2 border border-[#545B77] rounded-md bg-white hover:bg-[#545B77] hover:no-underline hover:text-[#30A2FF] transition-all" href="">Start</a>
+    </div>
+    <div class="h-[340px] bg-[#FFDBAA]"><p class="text-[25px] text-[#468B97] mt-3 font-semibold">Java</p><p class="text-[25px] text-[#545B77] mt-3 mb-[70px] font-normal">Java is a robust, object-oriented programming language that is platform-independent, meaning it can run on various operating systems without modification. </p>
+        <a class="start-btn text-[20px] text-[#545B77] mt-5 px-4 py-2 border border-[#545B77] rounded-md bg-white hover:bg-[#545B77] hover:no-underline hover:text-[#30A2FF] transition-all" href="">Start</a>
+    </div>
+    <div class="h-[340px] bg-[#D4E2D4]"><p class="text-[25px] text-[#468B97] mt-3 font-semibold">PHP</p><p class="text-[25px] text-[#545B77] mt-3 mb-[30px] font-normal">PHP is a server-side scripting language primarily used for web development. It is embedded in HTML and widely used for creating dynamic web pages and web applications.</p>
+        <a  class="start-btn text-[20px] text-[#545B77] mt-5 px-4 py-2 border border-[#545B77] rounded-md bg-white hover:bg-[#545B77] hover:no-underline hover:text-[#30A2FF] transition-all" href="">Start</a>
+    </div>
+  </div>
+
+  <!-- Include Bootstrap's JavaScript link in your HTML file -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+<!-- Add the following JavaScript code to your HTML file or include it in a separate script tag -->
+<!-- Include Bootstrap's JavaScript link in your HTML file -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+<!-- Add the following JavaScript code to your HTML file or include it in a separate script tag -->
+
+<script>
+// Get the modal element
+const modal = new bootstrap.Modal(document.getElementById("myModal"));
+
+// Get all the "Start" buttons
+const startButtons = document.querySelectorAll(".start-btn");
+
+// When the user clicks a "Start" button, check if the user is logged in
+startButtons.forEach((button) => {
+  button.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    // Check if the user is logged in (You can replace this with your authentication logic)
+    const userIsLoggedIn = {% if request.user.is_authenticated %}true{% else %}false{% endif %};
+
+    if (!userIsLoggedIn) {
+      // If the user is not logged in, show the modal popup 
+      modal.show();
+    } else {
+      // If the user is logged in, redirect them to the quiz page
+      window.location.href = "{% url 'startQuizz' %}"; // Replace "{% url 'startQuizz' %}" with the correct URL for your quiz page
+    }
+  });
+});
+</script>
+
+
+
+{% endblock %}

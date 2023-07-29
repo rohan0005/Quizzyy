@@ -1,10 +1,99 @@
 {% extends 'base.html' %}
 
-
+{%load crispy_forms_tags %} 
 {% block content %}
 
-<div class="h-[600px] bg-gradient-to-r from-[#567189] to-[#86A3B8]">
 
+<div class="h-[40px]">
+{% for message in messages %}
+<div class="container-fluid p-0 mb-[-50px] text-[18px] ">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="True">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
 </div>
 
+
+
+
+
+
+
+
+
+    <div class="grid grid-cols-2 gap-[600px]">
+        <form class="mb-2 ml-9 " action="" method="post">
+        {% csrf_token %}
+        <div class="p-8 ">
+
+
+            {% comment %} {% for messages in messages %}
+
+            {% if messages.tags == 'info' %}
+
+            <p class="text-[red]" id="messages">{{messages}}</p>
+
+                
+            {% endif %}
+            {% endfor %} {% endcomment %}
+            <h1 class="text-[26px]">Add new quizz</h1>
+                <div class="mt-6  w-[500px]">
+                    <p>{{form.category|as_crispy_field}}</p>
+                    <p>{{form.question|as_crispy_field}}</p>
+
+                 
+                    <div class="w-[600px] flex">{{form.optionA|as_crispy_field}}
+                        <p  class="pl-[87px]">{{form.optionB|as_crispy_field}}</p>
+                    </div>
+                    <div class="w-[600px] flex">{{form.optionC|as_crispy_field}}
+                        <p  class="pl-[87px]">{{form.optionD|as_crispy_field}}</p>
+                    </div>
+                    <p  class="pl-[87px]">{{form.correctAnswer|as_crispy_field}}</p>
+
+                 
+
+
+                </div>        
+                <input name="addQuizz" type="submit" class="btn btn-primary mt-6 text-[blue]" value="Add Quizz">
+            
+        </div>
+        </form>
+
+
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <div class="ml-7 p-8">
+
+            <h1 class="text-[26px]">Add new category</h1>
+                <div class="mt-6 w-[300px]">
+                    {{categoryForm.category|as_crispy_field}}
+                </div> 
+                <div class="mt-6 w-[300px]">
+                  {{categoryForm.description|as_crispy_field}}
+              </div>        
+                <input name="addCategory" type="submit" class="text-[blue] btn btn-primary" value="Add">
+            
+
+            </div>
+        </form>
+    </div>
+        
+    
+    
+
+
+
+<style>
+    .actA{
+      color: #F4E0B9;
+    }
+  </style>
+
 {% endblock %}
+
+

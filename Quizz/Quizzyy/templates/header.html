@@ -1,3 +1,4 @@
+{% load static %} 
 <!doctype html>
 <html lang="en">
 
@@ -8,6 +9,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="stylesheet" href="../static/css/index.css">
+  <link rel="stylesheet" href="../static/css/quizzCategories.css">
+
+  {% comment %} <link rel="stylesheet" href="{% static 'css/quizzCategories.css' %}"> {% endcomment %}
+
 
   <!-- Tailwind CSS-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,16 +32,16 @@
         style="color: #ffffff;"></i>uizzyy</h1></a>
       </div>
         <div class="w-[130px] mt-2 ml-[200px]">
-        <a class="hover:no-underline text-[20px] text-[#ffffff] act hover:text-[#9BE8D8]" href="{% url 'home' %}">Home</a>
+        <a class="hover:no-underline text-[20px] text-[#ffffff] act hover:text-[#F4E0B9]" href="{% url 'home' %}">Home</a>
         </div>
         <div class="w-[130px] mt-2 ml-[100px]">
-          <a class="hover:no-underline text-[20px] text-[#ffffff] hover:text-[#9BE8D8] " href="">Quizzes</a>
+          <a class="hover:no-underline text-[20px] text-[#ffffff] actQ hover:text-[#F4E0B9] " href="{% url 'quizzCategories' %}">Quizzes</a>
 
         </div>
 
         <div class="w-[170px] mt-2">
           {% if request.user.is_staff %}
-          <a class=" hover:no-underline text-[20px] text-[#ffffff] hover:text-[#9BE8D8] mr-[50px]" href="">Add Quizz</a>
+          <a class=" hover:no-underline text-[20px] text-[#ffffff] actA hover:text-[#F4E0B9] mr-[50px]" href="{% url 'addQuizz' %}">Add Quizz</a>
          {% endif %}
         </div>
 
@@ -44,12 +49,12 @@
           {% if request.user.is_authenticated %}
           <div class="mt-3">
             <span class="text-[white]">Hello, {{request.user}}</span>
-            <span class="text-[white]"> <a class="hover:text-[#8EC3B0] hover:no-underline" href="{% url 'logout' %}">(Logout)</a></span>
+            <span class="text-[white]"> <a class="hover:text-[#F4E0B9] hover:no-underline" href="{% url 'logout' %}">(Logout)</a></span>
           </div>
           {% else %}
           <div class="mt-3 text-[white]">
-            <a class="hover:no-underline" href="{% url 'login' %}">Login</a> /
-            <a class="hover:no-underline" href="{% url 'register' %}">Register</a>
+            <a class="hover:no-underline hover:text-[#F4E0B9]" href="{% url 'login' %}">Login</a> /
+            <a class="hover:no-underline hover:text-[#F4E0B9]" href="{% url 'register' %}">Register</a>
           </div>
           {% endif %}
         </div>

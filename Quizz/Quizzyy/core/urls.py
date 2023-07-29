@@ -15,6 +15,9 @@ urlpatterns = [
     
     path('addQuizz/', views.addQuizz, name='addQuizz'),
     
+    path('quizzCategories/', views.quizzCategories, name='quizzCategories'),
+    
+    
     
     
 ]

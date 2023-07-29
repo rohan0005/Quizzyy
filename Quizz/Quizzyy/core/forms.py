@@ -12,3 +12,16 @@ class CreateUserForm(UserCreationForm):
         model= User
         fields = ['username', 'email', 'password1', 'password2']
         
+        
+class CategoryForm(ModelForm):
+    
+    class Meta:
+        model = Category
+        fields = "__all__"
+
+
+        
+class QuizzAddForm(ModelForm):
+    class Meta:
+        model = QuizzAdd
+        fields = "__all__"

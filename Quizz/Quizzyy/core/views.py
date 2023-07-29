@@ -67,9 +67,43 @@ def register(request):
     
 
    
-   
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['teacher'])
+#@admin_only
 def addQuizz(request):
-    return render(request, 'addQuizz.html')
+    quizzAddForm = QuizzAddForm()
+    categoryForm = CategoryForm()
+    
+    if request.method == "POST":
+        if "addQuizz" in request.POST:
+            quizzAddForm = QuizzAddForm(request.POST)
+            if quizzAddForm.is_valid():
+                categoryObj = quizzAddForm.cleaned_data.get('category')
+                categoryName = categoryObj.category
+                quizzAddForm.save()
+                messages.success(request, "Successfully added quizz for category - " + categoryName)
+            return redirect(request.path)
+            
+        
+        # elif "quizz" in request.POST:
+        else:
+            categoryForm = CategoryForm(request.POST)
+            if categoryForm.is_valid():
+                categoryName = categoryForm.cleaned_data.get('category')
+                categoryForm.save()
+                messages.success(request, "Successfully added category - " + categoryName)
+            return redirect(request.path)
+    
+    
+        
+        
+    context = {
+        'form': quizzAddForm,
+        'categoryForm': categoryForm,
+        
+    }
+    
+    return render(request, 'addQuizz.html', context)
     
     
     
@@ -81,3 +115,16 @@ def SelectedCategory(request):
         
     
     
+    
+def quizzCategories(request):
+    
+    categoryDetails = Category.objects.all()
+
+    context = {
+        'categoryDetails': categoryDetails
+    }
+
+    
+    
+    return render (request, 'quizzCategories.html', context)
+ 

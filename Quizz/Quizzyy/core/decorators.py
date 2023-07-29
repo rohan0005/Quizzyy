@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 def unauthenticated_user(view_func):
     def wrapper_func(request, *args, **kwargs):
@@ -26,7 +27,9 @@ def allowed_users(allowed_roles=[]):
             if group in allowed_roles:
                 return view_func(request, *args, **kwargs)
             else:
-                return HttpResponse("You are not authorized")
+                home_page_url = reverse('home')
+                message = f"<p>You are not authorized. Go back to <a href='{home_page_url}'>Home Page</a> </p>"
+                return HttpResponse(message)
                 
             
             return view_func(request, *args, **kwargs)

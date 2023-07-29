@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<!--Categories-->
+
+<div class="p-9">
+
+  {% comment %} <h1 class="text-[28px] text-[#377D71] font-mono font-medium">Quizz Categories:</h1> {% endcomment %}
+  <h1 class="text-[#377D71] text-4xl text-center py-1">Quizz Categories:</h1>
+</div>
+
+
+
+
+
+  <div class="h-auto grid grid-cols-2 pt-4  gap-[50px] container" style="max-width: 1369px">
+    {% for i in categoryDetails %}
+    <div class="">
+
+      <div class="bg-[#0069ff1a] container h-auto w-[400px] text-center shadow-lg">
+        <h1 class="text-[#1873f2] text-3xl text-center py-3">{{i.category}}</h1> 
+        <p class="text-justify text-2xl py-2">{{i.description}}</p>
+        <input class="submitBtn hover:bg-[#2dc819d1]" type="submit" value="View">
+
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+
+
+  <div class="h-[100px]">
+
+  </div>
+
+
+
+
+
+
+<style>
+    .actQ{
+      color: #F4E0B9;
+    }
+
+    .submitBtn {
+      background-color: #14C38E;
+      border: none;
+      color: white;
+      padding: 14px 43px;
+      text-decoration: none;
+      margin: 26px 0px;
+      cursor: pointer;
+    }
+  </style>
+{% endblock %}
+
