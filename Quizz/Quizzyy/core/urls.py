@@ -8,7 +8,7 @@ urlpatterns = [
     path('logout/', views.logoutUser, name= "logout"),
 
 
-    path('register/', views.register, name='register'),
+    path('registerr/', views.registerr, name='register'),
     
     path('SelectedCategory/', views.SelectedCategory, name='SelectedCategory'),
     
@@ -16,6 +16,12 @@ urlpatterns = [
     path('addQuizz/', views.addQuizz, name='addQuizz'),
     
     path('quizzCategories/', views.quizzCategories, name='quizzCategories'),
+    
+    path('startQuizz/<str:category_name>/', views.startQuizz, name='startQuizz'),
+    
+    path('viewResult/', views.viewResult, name='viewResult'),
+    
+    
     
     
     

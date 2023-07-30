@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+
 {% block content %}
 
 
@@ -18,13 +18,49 @@
 
 
   <div class="h-auto grid grid-cols-2 pt-4  gap-[50px] container" style="max-width: 1369px">
-    {% for i in categoryDetails %}
-    <div class="">
 
-      <div class="bg-[#0069ff1a] container h-auto w-[400px] text-center shadow-lg">
+    
+        
+    <!-- The modal popup -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    {% for i in categoryDetails %}
+    <div class="h-auto">
+
+      <div class=" bg-[#0069ff1a] container h-[330px] w-[400px] text-center shadow-lg">
         <h1 class="text-[#1873f2] text-3xl text-center py-3">{{i.category}}</h1> 
-        <p class="text-justify text-2xl py-2">{{i.description}}</p>
-        <input class="submitBtn hover:bg-[#2dc819d1]" type="submit" value="View">
+        <p class="text-justify text-2xl py-5">{{i.description}}</p>
+     
+        
+
+
+
+        {% if request.user.is_authenticated %}
+          <a class="submitBtn hover:texx-[#ffffff] hover:no-underline hover:bg-[#2dc819d1]" href="{% url 'startQuizz' category_name=i.category %}">View</a>  
+        {% else %}
+
+          <a class="submitBtn hover:text-[#ffffff] hover:no-underline hover:bg-[#2dc819d1]" data-toggle="modal" data-target="#exampleModal" href="">View</a>  
+                
+        {% endif %}
 
       </div>
     </div>
@@ -55,7 +91,9 @@
       text-decoration: none;
       margin: 26px 0px;
       cursor: pointer;
+      
     }
+
   </style>
 {% endblock %}
 

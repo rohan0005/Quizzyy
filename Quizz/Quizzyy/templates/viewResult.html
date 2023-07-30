@@ -1,0 +1,325 @@
+
+{% extends 'baseForLogo.html' %}
+
+{% block content %}
+
+<style>
+    body{
+        background-color: #D8D9DA;
+    }
+</style>
+
+
+
+<!--main div-->
+<div>   
+    
+    <div class="grid justify-items-stretch">
+        <div class="w-[500px] justify-self-center mt-[30px] h-[80px] bg-[#0ed757ed] text-[#ffffff]">
+            <p class="text-center text-[23px] mt-6">You have solved {{totalCorrectAns}} out of {{totalQuestions}} Questions !!</p>
+        </div>
+    </div>
+        <br><br>
+        
+
+        <div class= "grid justify-items-stretch ">
+
+            <div class="bg-[blue] grid justify-items-stretch rounded-lg justify-self-center bg-[white] drop-shadow-xl">
+                    <div class="w-[840px]">
+                     {% for quizz in quizzes %}
+       
+                     
+                        <!--Questions-->
+                        <hr><hr>
+                        <div class="rounded-lg pt-3 pb-2 items-center flex bg-[white]">
+                        <p class="pl-[80px] text-4xl font-[500]">Q. {{quizz.question}}</p>
+                        </div>
+                        <hr><hr>
+                      <div> 
+                        {% if user_answers|get_item:quizz.id == quizz.optionA and user_answers|get_item:quizz.id == quizz.correctAnswer %}
+
+                        {% comment %} <h1>{{ user_answers|get_item:quizz.id}}</h1> {% endcomment %}
+
+                            <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                            </div>
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                            </div>
+                            <div class="items-center flex  py-2">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                            </div>
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                            </div>
+
+                        {% elif user_answers|get_item:quizz.id == quizz.optionA and user_answers|get_item:quizz.id != quizz.correctAnswer %}
+
+                                
+                                {% if quizz.optionB == quizz.correctAnswer %}
+                                <div class="bg-[#FF0060] items-center flex  py-2">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                                </div>
+                                <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                   <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                               </div>
+                               <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                            </div>
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                            </div>
+
+                               {% elif quizz.optionC == quizz.correctAnswer %}
+                               
+                                   <div class="bg-[#FF0060] items-center flex  py-2    ">
+                                       <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                                   </div>
+
+                                   <div class=" items-center flex  py-2">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                                </div>
+
+                                   <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                                </div>
+
+                                <div class="items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                                </div>
+
+                                   {% elif quizz.optionD == quizz.correctAnswer %}
+                                   <div class="bg-[#FF0060] items-center flex  py-2">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                                </div>
+                                   <div class="items-center flex  py-2    ">
+                                       <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                                   </div>
+                                   <div class=" items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                                </div>
+                                <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                                </div>
+                               {% endif %}
+                        {% endif %} 
+                        
+                        
+
+                        {% if user_answers|get_item:quizz.id == quizz.optionB and user_answers|get_item:quizz.id == quizz.correctAnswer %}
+
+                        {% comment %} <h1>{{ user_answers|get_item:quizz.id}}</h1> {% endcomment %}
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                            </div>
+                            <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                            </div>
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                            </div>
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                            </div>
+
+                        {% elif user_answers|get_item:quizz.id == quizz.optionB and user_answers|get_item:quizz.id != quizz.correctAnswer %}
+
+                                
+                                {% if quizz.optionA == quizz.correctAnswer %}
+                                <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                   <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                               </div>
+                               <div class="bg-[#FF0060] items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                            </div>
+                               <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                            </div>
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                            </div>
+
+                               {% elif quizz.optionC == quizz.correctAnswer %}
+                                   <div class="items-center flex  py-2    ">
+                                       <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                                   </div>
+                                   <div class="bg-[#FF0060] items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                                </div>
+
+                                   <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                                </div>
+
+                                <div class="items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                                </div>
+
+                                   {% elif quizz.optionD == quizz.correctAnswer %}
+                                   <div class=" items-center flex  py-2    ">
+                                       <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                                   </div>
+                                   <div class="bg-[#FF0060] items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                                </div>
+                                   <div class=" items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                                </div>
+                                <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                                </div>
+                               {% endif %}
+
+                        {% endif %} 
+
+
+
+
+                        {% if user_answers|get_item:quizz.id == quizz.optionC and user_answers|get_item:quizz.id == quizz.correctAnswer %}
+
+                        {% comment %} <h1>{{ user_answers|get_item:quizz.id}}</h1> {% endcomment %}
+                            <div class="items-center flex  py-2 ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                            </div>
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                            </div>
+                            <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                            </div>
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                            </div>
+
+                        {% elif user_answers|get_item:quizz.id == quizz.optionC and user_answers|get_item:quizz.id != quizz.correctAnswer %}
+
+                                
+                                {% if quizz.optionA == quizz.correctAnswer %}
+                                   <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                       <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                                   </div>
+
+                                   <div class="items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                                </div>
+
+                                <div class="bg-[#FF0060] items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                                </div>
+
+                                <div class="items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                                </div>
+
+
+                                {% elif quizz.optionB == quizz.correctAnswer %}
+                                <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                   <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                               </div>
+                               <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                            </div>
+                            <div class="bg-[#FF0060] items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                            </div>
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                            </div>
+
+                               
+                                   {% elif quizz.optionD == quizz.correctAnswer %}
+                                   <div class=" items-center flex  py-2    ">
+                                       <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                                   </div>
+                                   <div class=" items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                                </div>
+                                <div class="bg-[#FF0060] items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                                </div>
+                                <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                                </div>
+                               {% endif %}
+
+                        {% endif %} 
+
+
+                        {% if user_answers|get_item:quizz.id == quizz.optionD and user_answers|get_item:quizz.id == quizz.correctAnswer %}
+
+                        {% comment %} <h1>{{ user_answers|get_item:quizz.id}}</h1> {% endcomment %}
+                            
+                            <div class="items-center flex  py-2 ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                            </div>
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                            </div>
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                            </div>
+                            <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                            </div>
+
+                        {% elif user_answers|get_item:quizz.id == quizz.optionD and user_answers|get_item:quizz.id != quizz.correctAnswer %}
+
+                                
+                                {% if quizz.optionA == quizz.correctAnswer %}
+                                <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                   <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                               </div>
+                               <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                            </div>
+                            <div class="items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                            </div>
+                            <div class="bg-[#FF0060] items-center flex  py-2    ">
+                                <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                            </div>
+
+                               {% elif quizz.optionB == quizz.correctAnswer %}
+                                   <div class=" items-center flex  py-2    ">
+                                       <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                                   </div>
+
+                                   <div class="bg-[#A2FF86] items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                                </div>
+
+                                <div class="items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                                </div>
+                                <div class="bg-[#FF0060] items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                                </div>
+
+                                   {% elif quizz.optionC == quizz.correctAnswer %}
+                                   <div class="items-center flex  py-2    ">
+                                       <p class="ml-[129px] text-2xl">{{quizz.optionA}}</p>
+                                   </div>
+                                   <div class=" items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionB}}</p>
+                                </div>
+                                <div class="bg-[#A2FF86] items-center flex  py-2">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionC}}</p>
+                                </div>
+                                <div class="bg-[#FF0060] items-center flex  py-2    ">
+                                    <p class="ml-[129px] text-2xl">{{quizz.optionD}}</p>
+                                </div>
+                               {% endif %}
+
+                        {% endif %} 
+                     {% endfor %}
+                    </div>
+                    
+            </div>
+        </div>
+
+</div>   
+
+<br><br>
+</body>
+</html> 
+{% endblock %}

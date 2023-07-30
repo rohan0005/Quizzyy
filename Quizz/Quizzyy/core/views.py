@@ -47,7 +47,7 @@ def logoutUser(request):
 
 
 @unauthenticated_user
-def register(request):
+def registerr(request):
     
     form = CreateUserForm()
         
@@ -128,3 +128,66 @@ def quizzCategories(request):
     
     return render (request, 'quizzCategories.html', context)
  
+ 
+ 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['student'])    
+def startQuizz(request, category_name):
+    
+    
+    cats = QuizzAdd.objects.filter(category__category=category_name)
+    
+    
+    if request.method == "POST":
+        
+        cat = cats.first()
+        if cat:
+            
+            # store user answers in dictionary 
+            user_answers={}
+            # # retrieve all the quiz questions associated with a specific category.
+            category = Category.objects.get(category=category_name)
+            quizzes = QuizzAdd.objects.filter(category=category)
+            totalQuestions = quizzes.count()
+            
+            totalCorrectAns = 0
+            
+            for quizz in quizzes:
+                
+                user_answer = request.POST.get(str(quizz.id))
+                user_answers[quizz.id] = user_answer
+          
+                if user_answer == quizz.correctAnswer:
+                    totalCorrectAns += 1
+                    
+                    
+            context ={
+                'quizzes': quizzes,
+                'totalQuestions': totalQuestions,
+                'totalCorrectAns': totalCorrectAns,
+                'user_answers' : user_answers,
+            }
+            
+            
+        else:
+            print("No category found in the queryset.")
+        
+        return render(request, 'viewResult.html',context)
+        
+    
+    context ={
+        'cats': cats
+    }
+    
+    return render (request, 'startQuizz.html', context)
+     
+from django.template.defaulttags import register
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
+
+     
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['student'])       
+def viewResult(request):
+    return render(request, 'viewResult.html')
