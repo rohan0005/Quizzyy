@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/register.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- 
-    
-    <title>Document</title>
-</head>
-<body>
-    
+{% extends 'baseForLogo.html' %}
+
+  {% block title %}Login{% endblock %}
+
+{% block content %}
+
+  
 
 <!--REGISTERRRR-->
 
 
 <div class="login-box">
-    <h2>Login</h2>
+    <h2 class="text-3xl">Login</h2>
     <form action="" method="post">
         {% csrf_token %}
       <div class="user-box">
@@ -28,7 +22,7 @@
         <input type="password" name="password" required="">
         <label>Password</label>
       </div>
-      <input class="w-[90px] h-[40px] text-[16px] rounded-lg bg-[#FF6969] text-[#ffffff] hover:bg-[#DF2E38] hover:text-[#ffffff]" type="submit" name="SUBMIT">
+      <input class="w-[90px] h-[40px] text-[16px] rounded-lg bg-[#FF6969] text-[#ffffff] hover:bg-[#DF2E38] hover:text-[#ffffff]" type="submit" value="Login">
     </form>
     <div>
     {% for messages in messages %}
@@ -36,9 +30,18 @@
     
     {% endfor %}
     </div>
+
+    <div class="mt-5">
+      <p class="text-[#ffffff] ">Not member yet ?  <a class="text-[#068FFF] hover:text-[#6528F7] hover:no-underline " href="{% url 'register' %}">Register</a></p>
+    </div>
+
+
   </div>
 
 
 <script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>
+
+  
+{% endblock %}

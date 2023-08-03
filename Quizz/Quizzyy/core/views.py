@@ -54,6 +54,7 @@ def registerr(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
+
             user = form.save()
             username = form.cleaned_data.get('username')
                 
@@ -93,6 +94,8 @@ def addQuizz(request):
                 categoryForm.save()
                 messages.success(request, "Successfully added category - " + categoryName)
             return redirect(request.path)
+        
+        
     
     
         
@@ -105,14 +108,7 @@ def addQuizz(request):
     
     return render(request, 'addQuizz.html', context)
     
-    
-    
-    
-# Showing available quizes for selected category
-    
-def SelectedCategory(request):
-    return render (request, 'SelectedCategory.html')
-        
+
     
     
     

@@ -10,7 +10,6 @@ urlpatterns = [
 
     path('registerr/', views.registerr, name='register'),
     
-    path('SelectedCategory/', views.SelectedCategory, name='SelectedCategory'),
     
     
     path('addQuizz/', views.addQuizz, name='addQuizz'),

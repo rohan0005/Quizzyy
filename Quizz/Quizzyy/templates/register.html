@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/register.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- 
-    
-    <title>Document</title>
-</head>
-<body>
-    
-
+{% extends 'baseForLogo.html' %}
+{% block title %}Quizzyy-Register{% endblock %}
+{% block content %}
 <!--REGISTERRRR-->
 
 
-<div class="login-box">
-    <h2>Register</h2>
+<div class="login-box mt-5">
+    <h2 class="text-3xl">Register</h2>
     <form action="" method="post">
         {% csrf_token %}
       <div class="user-box">
@@ -38,11 +27,73 @@
         {{form.password2}}
         <label>Re-Password</label>
       </div>
-      <input class="w-[90px] h-[40px] text-[16px] rounded-lg bg-[#FF6969] text-[#ffffff] hover:bg-[#DF2E38] hover:text-[#ffffff]" type="submit" name="SUBMIT">
+
+      <input type="checkbox" id="requestForTeacher" value="Request For teacher" onClick="reqForTeacher()">
+      <label class="text-[#fff] mb-3" for="requestForTeacher"> Request For teacher</label>
+      <br>
+
+<div id="imageUpload" style="display:none">
+<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="imageUpload">Send us a proof</label>
+<input  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
+ type="file" multiple>
+</div> 
+
+<br>
+
+
+      <div class="flex gap-5">
+      <input class="w-[90px] h-[40px] text-[16px] rounded-lg bg-[#FF6969] text-[#ffffff] hover:bg-[#DF2E38] hover:text-[#ffffff]" type="submit" value="Register">
+        <p class="text-[#fff] mt-2">Already have account? <a class="text-[#068FFF] hover:text-[#6528F7] hover:no-underline " href="{% url 'login' %}">Login</a></p>
+    </div>
+
+      
+
+
     </form>
-    {{form.errors}}
+    <div class="mt-4">                  
+        
+        {% if form.errors %}
+
+          
+          {% if form.errors.username %}
+
+          <p class="text-[#ED2B2A] text-[16px] mb-[-20px]">A user with that username already exists.</p>
+            
+          {% else %}
+
+                <p class="text-[#ED2B2A]  text-[16px] mb-[-20px]">Password fields didn't match.</p>
+
+          {% endif %}
+            
+     
+        
+        {% endif %}
+          
+    </div>
   </div>
 
-<script src="https://cdn.tailwindcss.com"></script>
+  <script>
+
+    function reqForTeacher() {
+
+          var checkbox = document.getElementById("requestForTeacher");
+          var imageUpload = document.getElementById("imageUpload");
+
+
+          if (checkbox.checked == true){
+            imageUpload.style.display = "block";
+          }
+
+          else {
+            imageUpload.style.display = "none";
+          }
+      
+    }
+
+    
+  </script>
+
 </body>
 </html>
+
+{% endblock %}
