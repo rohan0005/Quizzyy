@@ -20,6 +20,9 @@ urlpatterns = [
     
     path('viewResult/', views.viewResult, name='viewResult'),
     
+    path('teacherRegister/', views.teacherRegister, name='teacherRegister'),
+    
+    
     
     
     

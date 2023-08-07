@@ -9,9 +9,17 @@ from django import forms
 
 
 class CreateUserForm(UserCreationForm):
+    
+    userStatus = [('teacher','Teacher'), ('student','Student')]
+    
+    status = forms.CharField(label='Choose user status.', widget=forms.Select(choices=userStatus), required=True)
+
+    
+    # requestTeacher =  forms.BooleanField(required=True)
+    
     class Meta:
         model= User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2', 'status']
 
 class CategoryForm(ModelForm):
     

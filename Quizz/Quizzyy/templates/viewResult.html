@@ -19,6 +19,10 @@
             <p class="text-center text-[23px] mt-6">You have solved {{totalCorrectAns}} out of {{totalQuestions}} Questions !!</p>
         </div>
     </div>
+
+</div>
+
+    <div>
         <br><br>
         
 
@@ -316,10 +320,23 @@
                     
             </div>
         </div>
-
-</div>   
+</div>
+</div>
 
 <br><br>
+
+
+
+<div class="grid place-items-end mr-[340px] mb-4 h-[50px] ">
+        {% comment %} <button class=" p-3 text-white rounded-lg bg-green-400">Save my record</button> {% endcomment %}
+
+      <input class="p-2 h-[40px] text-[16px] rounded-lg bg-green-500 text-[#ffffff] hover:bg-green-400 hover:cursor-pointer hover:text-[#ffffff]" type="submit" value="Save my record">
+
+</div>
+
+
+{% include 'footer.html' %}
+
 </body>
 </html> 
 {% endblock %}

@@ -5,7 +5,7 @@
 
 
 <div class="login-box mt-5">
-    <h2 class="text-3xl">Register</h2>
+    <h2 class="text-2xl">Register</h2>
     <form action="" method="post">
         {% csrf_token %}
       <div class="user-box">
@@ -28,15 +28,20 @@
         <label>Re-Password</label>
       </div>
 
-      <input type="checkbox" id="requestForTeacher" value="Request For teacher" onClick="reqForTeacher()">
-      <label class="text-[#fff] mb-3" for="requestForTeacher"> Request For teacher</label>
+      <div class="user-box">
+        <p class="text-[#fff]">User status: </p>
+       {{form.status}}
+       
+      </div>
+
+
+
+
       <br>
 
-<div id="imageUpload" style="display:none">
-<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="imageUpload">Send us a proof</label>
-<input  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
- type="file" multiple>
-</div> 
+      <!--<p><a class="hover:no-underline text-blue-600" href="{% url 'teacherRegister' %}">Register for Teacher.</a></p>
+      -->
+
 
 <br>
 

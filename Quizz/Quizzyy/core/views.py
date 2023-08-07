@@ -15,7 +15,13 @@ from . decorators import *
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html',)
+    
+    if 'name' in request.COOKIES and request.COOKIES['name']:
+        cookieData = request.COOKIES['name']
+        return render(request, 'index.html', {'cookieData' : cookieData})
+    else:
+        return render(request, 'index.html')
+
 
 
 @unauthenticated_user
@@ -29,7 +35,14 @@ def loginPage(request):
             
         if user is not None:
             login(request, user)
-            return redirect('home')
+             
+            response = redirect('home')
+    
+            response.set_cookie('name', username) # max_age=60
+            
+            return response
+    
+             
         else:
             messages.info(request, 'Username or Password is incorrect')
 
@@ -37,9 +50,21 @@ def loginPage(request):
 
 
 
+
+
+
+
 def logoutUser(request):
+
+    response = redirect('login')
+    
+    response.delete_cookie('name')
+    
     logout(request)
-    return redirect('login')
+    
+    return response
+
+
 
 
 
@@ -57,15 +82,33 @@ def registerr(request):
 
             user = form.save()
             username = form.cleaned_data.get('username')
+            selectedGroup = form.cleaned_data.get('status')
+            
+            #print("Selected group is", selectedGroup)
+            
+            if selectedGroup:
+                #print("Selected group is", selectedGroup)
+                group = Group.objects.get(name=selectedGroup)
                 
-            group = Group.objects.get(name='student')
-            user.groups.add(group)
+                user.groups.add(group)
                 
-            messages.success(request,"Account Created for " + username)
-            return redirect('login')
+                messages.success(request,"Account Created for " + username)
+                return redirect('login')
     context = {'form': form}
     return render(request, 'register.html', context)
     
+
+
+
+
+
+def teacherRegister(request):
+    return render (request, 'teacherRegister.html')
+
+
+
+
+
 
    
 @login_required(login_url='login')
